@@ -31,9 +31,9 @@ world_capitals = {"Afganistan": "Kabul", "Albania": "Tirana",
 for comment in subreddit.stream.comments():
     if keyphrase in comment.body:
         word = comment.body.replace(keyphrase, '')
-        reply = 'Capital city: ' + world_capitals[word]
-        comment.reply(reply)
-    else:
-        reply = 'No result found.'
-        comment.reply(reply)
-            
+        if word in world_capitals:
+            reply = 'Capital city: ' + world_capitals[word]
+            comment.reply(reply)
+        else:
+            reply = 'No result found.'
+            comment.reply(reply)
